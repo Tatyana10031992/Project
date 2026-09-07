@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Всё о закваске - Хлеб на закваске</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/starter.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <a href="/" class="logo">🍞 Хлеб на закваске</a>
+            <ul class="nav-links">
+                <li><a href="/">Главная</a></li>
+                <li><a href="/recipes.html">Рецепты</a></li>
+                <li><a href="/starter.html" class="active">Закваска</a></li>
+                <li><a href="/add-recipe.html">➕ Добавить рецепт</a></li>
+                <li class="auth-links">
+                    <a href="/login.html" id="loginLink">Вход</a>
+                    <a href="/register.html" id="registerLink">Регистрация</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="page-header">
+        <div class="container">
+            <h1>🌾 Всё о закваске</h1>
+            <p>Создайте свою живую закваску и пеките настоящий хлеб</p>
+        </div>
+    </section>
+
+    <!-- Введение -->
+    <section class="intro-section">
+        <div class="container">
+            <div class="intro-content">
+                <div class="intro-text">
+                    <h2>Что такое закваска?</h2>
+                    <p><strong>Закваска</strong> — это симбиотическая культура молочнокислых бактерий и диких дрожжей, которая живёт в смеси муки и воды. Она:</p>
+                    <ul>
+                        <li>🌾 <strong>Поднимает тесто</strong> — выделяет углекислый газ</li>
+                        <li>🍋 <strong>Придает вкус</strong> — молочная кислота создаёт характерный кисловатый вкус</li>
+                        <li>💪 <strong>Улучшает усвояемость</strong> — расщепляет глютен и фитиновую кислоту</li>
+                        <li>🕒 <strong>Продлевает свежесть</strong> — хлеб дольше не черствеет</li>
+                    </ul>
+                </div>
+                <div class="intro-image">
+                    <div class="starter-icon">🍞</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Как создать закваску -->
+    <section class="guide-section">
+        <div class="container">
+            <h2 class="section-title">📋 Как создать закваску с нуля</h2>
+            <div class="guide-timeline">
+                <div class="guide-step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>День 1: Начало</h3>
+                        <p>Смешайте <strong>100 г</strong> ржаной муки и <strong>100 г</strong> воды (комнатной температуры).</p>
+                        <div class="step-tip">💡 <em>Используйте ржаную муку — она содержит больше питательных веществ для бактерий.</em></div>
+                    </div>
+                </div>
+                <div class="guide-step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>День 2-3: Первое кормление</h3>
+                        <p>Добавьте <strong>100 г</strong> муки и <strong>100 г</strong> воды. Перемешайте. Оставьте при комнатной температуре.</p>
+                        <div class="step-tip">💡 <em>Через 24 часа вы увидите первые пузырьки — это начинается брожение!</em></div>
+                    </div>
+                </div>
+                <div class="guide-step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>День 4-5: Регулярное кормление</h3>
+                        <p>Каждые 12 часов забирайте <strong>100 г</strong> закваски и добавляйте <strong>100 г</strong> муки и <strong>100 г</strong> воды.</p>
+                        <div class="step-tip">💡 <em>Закваска должна увеличиваться в объеме и иметь приятный кисловатый запах.</em></div>
+                    </div>
+                </div>
+                <div class="guide-step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h3>День 6-7: Готова!</h3>
+                        <p>Закваска готова к использованию, когда она:</p>
+                        <ul>
+                            <li>Увеличивается в 2-3 раза через 4-6 часов после кормления</li>
+                            <li>Имеет кисловатый запах</li>
+                            <li>Пенится и содержит множество пузырьков</li>
+                        </ul>
+                        <div class="step-tip">🎉 <em>Поздравляю! Теперь вы можете печь хлеб на своей закваске!</em></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Калькулятор кормления -->
+    <section class="calculator-section">
+        <div class="container">
+            <h2 class="section-title">🧮 Калькулятор кормления закваски</h2>
+            <div class="calculator-card">
+                <div class="calc-inputs">
+                    <div class="form-group">
+                        <label for="starterAmount">Сколько закваски у вас (г)?</label>
+                        <input type="number" id="starterAmount" value="100" min="10" step="5">
+                    </div>
+                    <div class="form-group">
+                        <label for="hydration">Влажность закваски (%)</label>
+                        <select id="hydration">
+                            <option value="100">100% (равные части муки и воды)</option>
+                            <option value="80">80% (меньше воды)</option>
+                            <option value="120">120% (больше воды)</option>
+                        </select>
+                    </div>
+                    <button onclick="calculateFeeding()" class="btn btn-primary">Рассчитать кормление</button>
+                </div>
+                <div id="calculationResult" class="calc-result">
+                    <h3>📊 Результат кормления</h3>
+                    <div class="result-grid">
+                        <div class="result-item">
+                            <span class="result-label">Воды:</span>
+                            <span class="result-value" id="waterAmount">100 г</span>
+                        </div>
+                        <div class="result-item">
+                            <span class="result-label">Муки:</span>
+                            <span class="result-value" id="flourAmount">100 г</span>
+                        </div>
+                        <div class="result-item">
+                            <span class="result-label">Оставить закваски:</span>
+                            <span class="result-value" id="keepAmount">50 г</span>
+                        </div>
+                        <div class="result-item">
+                            <span class="result-label">Выбросить:</span>
+                            <span class="result-value" id="discardAmount">50 г</span>
+                        </div>
+                    </div>
+                    <div class="result-tip">
+                        💡 <strong>Совет:</strong> Оставляйте 20-30% от общей массы для сохранения сильной культуры.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Типы заквасок -->
+    <section class="types-section">
+        <div class="container">
+            <h2 class="section-title">🌾 Виды заквасок</h2>
+            <div id="starters-container" class="starters-grid">
+                <!-- Загружается из API -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Виды заквасок -->
+
+            <!-- Загружается из API -->
+        </div>
+    </div>
+</section>
+
+    <!-- Советы -->
+    <section class="tips-section">
+        <div class="container">
+            <h2 class="section-title">💡 Советы по уходу за закваской</h2>
+            <div class="tips-grid">
+                <div class="tip-card">
+                    <div class="tip-icon">🌡️</div>
+                    <h3>Температура</h3>
+                    <p>Идеальная температура для закваски — <strong>22-26°C</strong>. В холодильнике закваска замедляется, но не умирает.</p>
+                </div>
+                <div class="tip-card">
+                    <div class="tip-icon">💧</div>
+                    <h3>Вода</h3>
+                    <p>Используйте <strong>фильтрованную или бутилированную воду</strong> без хлора. Хлор убивает полезные бактерии.</p>
+                </div>
+                <div class="tip-card">
+                    <div class="tip-icon">🌾</div>
+                    <h3>Мука</h3>
+                    <p>Лучше всего подходит <strong>ржаная или цельнозерновая мука</strong>. Они содержат больше питательных веществ.</p>
+                </div>
+                <div class="tip-card">
+                    <div class="tip-icon">🔄</div>
+                    <h3>Регулярность</h3>
+                    <p>Если печёте редко, храните закваску в холодильнике и кормите <strong>раз в 5-7 дней</strong>.</p>
+                </div>
+                <div class="tip-card">
+                    <div class="tip-icon">👃</div>
+                    <h3>Запах</h3>
+                    <p>Здоровая закваска пахнет <strong>приятно кисловатым, фруктовым или ореховым</strong> ароматом.</p>
+                </div>
+                <div class="tip-card">
+                    <div class="tip-icon">⚖️</div>
+                    <h3>Соотношение</h3>
+                    <p>Классическое соотношение для кормления: <strong>1:1:1</strong> (закваска:мука:вода).</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Хлеб на закваске. Все права защищены.</p>
+        </div>
+    </footer>
+
+    <script src="js/starter.js"></script>
+</body>
+</html>

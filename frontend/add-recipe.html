@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Добавить рецепт</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/form.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <a href="/" class="logo">🍞 Хлеб на закваске</a>
+            <ul class="nav-links">
+                <li><a href="/">Главная</a></li>
+                <li><a href="/recipes.html">Рецепты</a></li>
+                <li><a href="/starter.html">Закваска</a></li>
+                <li><a href="/add-recipe.html" class="active">+ Добавить</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="page-header">
+        <div class="container">
+            <h1>➕ Добавить новый рецепт</h1>
+            <p>Поделитесь своим любимым рецептом хлеба на закваске</p>
+        </div>
+    </section>
+
+    <section class="form-section">
+        <div class="container">
+            <form id="recipeForm" class="recipe-form">
+                <div class="form-group">
+                    <label for="title">Название рецепта *</label>
+                    <input type="text" id="title" name="title" required placeholder="Например: Классический ржаной хлеб">
+                </div>
+
+
+                <div class="form-group">
+                    <label for="description">Описание *</label>
+                    <textarea id="description" name="description" required placeholder="Краткое описание рецепта..."></textarea>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="prep_time">Время подготовки (мин) *</label>
+                        <input type="number" id="prep_time" name="prep_time" required min="1" value="30">
+                    </div>
+                    <div class="form-group">
+                        <label for="cook_time">Время выпечки (мин) *</label>
+                        <input type="number" id="cook_time" name="cook_time" required min="1" value="45">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="difficulty">Сложность *</label>
+                    <select id="difficulty" name="difficulty" required>
+                        <option value="easy">🍃 Легкий</option>
+                        <option value="medium" selected>⚖️ Средний</option>
+                        <option value="hard">🔥 Сложный</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="ingredients">Ингредиенты *</label>
+                    <textarea id="ingredients" name="ingredients" required placeholder="Список ингредиентов (каждый с новой строки)&#10;Например:&#10;500 г муки&#10;350 мл воды&#10;150 г закваски&#10;10 г соли"></textarea>
+                    <small>Каждый ингредиент с новой строки</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="instructions">Инструкция приготовления *</label>
+                    <textarea id="instructions" name="instructions" required placeholder="Пошаговая инструкция..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="image_url">Ссылка на фото (необязательно)</label>
+                    <input type="url" id="image_url" name="image_url" placeholder="https://example.com/photo.jpg">
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">✨ Добавить рецепт</button>
+                    <button type="reset" class="btn btn-secondary">Очистить</button>
+                </div>
+            </form>
+
+            <div id="message" class="message"></div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Хлеб на закваске. Все права защищены.</p>
+        </div>
+    </footer>
+
+    <script src="js/add-recipe.js"></script>
+</body>
+</html>
