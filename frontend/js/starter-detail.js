@@ -1,4 +1,4 @@
-// Анимация появления при скролле
+
 document.addEventListener('DOMContentLoaded', () => {
     const items = document.querySelectorAll('.tip-item, .comparison-item');
     

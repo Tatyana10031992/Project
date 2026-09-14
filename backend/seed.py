@@ -5,7 +5,6 @@ import json
 def seed_database():
     db = SessionLocal()
     
-    # Добавляем закваски
     starters_data = [
         {
             "name": "Классическая ржаная закваска",
@@ -42,7 +41,6 @@ def seed_database():
     ]
     
     for data in starters_data:
-        # Проверяем, существует ли уже такая закваска
         existing = db.query(models.Starter).filter(models.Starter.name == data["name"]).first()
         if not existing:
             starter = schemas.StarterCreate(**data)

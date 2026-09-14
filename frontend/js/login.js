@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('loginForm');
     const messageDiv = document.getElementById('message');
 
-    // Проверяем, есть ли уже токен
+   
     const token = localStorage.getItem('access_token');
     if (token) {
         window.location.href = '/';
@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
         submitBtn.disabled = true;
 
         try {
-            // Используем form-data для OAuth2
+            
             const formData = new URLSearchParams();
             formData.append('username', username);
             formData.append('password', password);
@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 throw new Error(data.detail || 'Ошибка входа');
             }
 
-            // Сохраняем токен
+          
             localStorage.setItem('access_token', data.access_token);
             localStorage.setItem('username', data.username);
             localStorage.setItem('user_id', data.user_id);

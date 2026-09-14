@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const password = document.getElementById('password').value;
         const confirmPassword = document.getElementById('confirm_password').value;
 
-        // Валидация
+    
         if (!username || !email || !password || !confirmPassword) {
             showMessage('Пожалуйста, заполните все поля', 'error');
             return;

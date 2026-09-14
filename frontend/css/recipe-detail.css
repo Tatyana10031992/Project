@@ -183,7 +183,7 @@
     padding: 2rem;
 }
 
-/* Responsive */
+
 @media (max-width: 768px) {
     .recipe-header h1 {
         font-size: 1.8rem;

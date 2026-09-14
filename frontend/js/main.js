@@ -1,6 +1,6 @@
 const API_URL = 'http://localhost:8000/api';
 
-// Загрузка статистики
+
 async function loadStats() {
     try {
         const [recipesRes, startersRes] = await Promise.all([
@@ -14,31 +14,31 @@ async function loadStats() {
         const recipeCount = document.getElementById('recipeCount');
         const starterCount = document.getElementById('starterCount');
         
-        // Рецепты
+   
         if (recipes && recipes.length > 0) {
             if (recipeCount) recipeCount.textContent = recipes.length;
         } else {
             if (recipeCount) recipeCount.textContent = '3+';
         }
         
-        // Закваски - показываем количество из базы данных
+   
         if (starters && starters.length > 0) {
             if (starterCount) starterCount.textContent = starters.length;
         } else {
-            // Если нет в БД, показываем 3 (ваше количество)
-            if (starterCount) starterCount.textContent = '3'; // ← ИЗМЕНЕНО НА 3
+            
+            if (starterCount) starterCount.textContent = '3'; 
         }
     } catch (error) {
         console.error('Ошибка загрузки статистики:', error);
-        // Если ошибка, показываем 3
+      
         const recipeCount = document.getElementById('recipeCount');
         const starterCount = document.getElementById('starterCount');
         if (recipeCount) recipeCount.textContent = '3+';
-        if (starterCount) starterCount.textContent = '3'; // ← ИЗМЕНЕНО НА 3
+        if (starterCount) starterCount.textContent = '3'; 
     }
 }
 
-// Анимация появления карточек
+
 function animateCards() {
     const cards = document.querySelectorAll('.feature-card');
     cards.forEach((card, index) => {
@@ -52,7 +52,7 @@ function animateCards() {
     });
 }
 
-// Инициализация
+
 document.addEventListener('DOMContentLoaded', () => {
     console.log('🍞 Хлеб на закваске - сайт загружен!');
     loadStats();
@@ -61,7 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-// Добавьте в main.js или отдельный файл
+
 function updateAuthUI() {
     const username = localStorage.getItem('username');
     const token = localStorage.getItem('access_token');
@@ -69,7 +69,7 @@ function updateAuthUI() {
     const registerLink = document.getElementById('registerLink');
     
     if (token && username) {
-        // Пользователь авторизован
+       
         loginLink.textContent = `👤 ${username}`;
         loginLink.href = '#';
         loginLink.onclick = (e) => {
@@ -95,5 +95,5 @@ function updateAuthUI() {
     }
 }
 
-// Вызовите после загрузки страницы
+
 document.addEventListener('DOMContentLoaded', updateAuthUI);

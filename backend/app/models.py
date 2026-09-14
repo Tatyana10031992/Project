@@ -13,8 +13,7 @@ class User(Base):
     is_active = Column(Boolean, default=True)
     created_at = Column(DateTime, default=datetime.utcnow)
     
-    # Отношение к рецептам (если пользователь может создавать рецепты)
-    # recipes = relationship("Recipe", back_populates="author")
+   
 
 class Recipe(Base):
     __tablename__ = "recipes"
@@ -31,8 +30,10 @@ class Recipe(Base):
     created_at = Column(DateTime, default=datetime.utcnow)
     updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
     
-    # Отношение к комментариям
+   
     comments = relationship("Comment", back_populates="recipe", cascade="all, delete-orphan")
+
+
 
 class Starter(Base):
     __tablename__ = "starters"
@@ -45,6 +46,8 @@ class Starter(Base):
     temperature = Column(Float)
     humidity = Column(Float, nullable=True)
     created_at = Column(DateTime, default=datetime.utcnow)
+
+
 
 class Comment(Base):
     __tablename__ = "comments"

@@ -2,17 +2,22 @@ from pydantic import BaseModel, EmailStr
 from datetime import datetime
 from typing import Optional, List
 
-# User Schemas
+
 class UserBase(BaseModel):
     username: str
     email: EmailStr
 
+
+
 class UserCreate(UserBase):
     password: str
+
 
 class UserLogin(BaseModel):
     username: str
     password: str
+
+
 
 class User(UserBase):
     id: int
@@ -22,7 +27,7 @@ class User(UserBase):
     class Config:
         from_attributes = True
 
-# Recipe Schemas
+
 class RecipeBase(BaseModel):
     title: str
     description: str
@@ -33,16 +38,24 @@ class RecipeBase(BaseModel):
     difficulty: str
     image_url: Optional[str] = None
 
+
+
 class RecipeCreate(RecipeBase):
     pass
+
+
 
 class CommentBase(BaseModel):
     author: str
     content: str
     rating: Optional[int] = None
 
+
+
 class CommentCreate(CommentBase):
     recipe_id: int
+
+
 
 class Comment(CommentBase):
     id: int
@@ -51,6 +64,8 @@ class Comment(CommentBase):
     
     class Config:
         from_attributes = True
+
+
 
 class Recipe(RecipeBase):
     id: int
@@ -61,6 +76,8 @@ class Recipe(RecipeBase):
     class Config:
         from_attributes = True
 
+
+
 class StarterBase(BaseModel):
     name: str
     type: str
@@ -69,8 +86,12 @@ class StarterBase(BaseModel):
     temperature: float
     humidity: Optional[float] = None
 
+
+
 class StarterCreate(StarterBase):
     pass
+
+
 
 class Starter(StarterBase):
     id: int
