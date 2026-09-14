@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
         
-        // Собираем данные из формы
+       
         const formData = {
             title: document.getElementById('title').value.trim(),
             description: document.getElementById('description').value.trim(),
@@ -19,13 +19,13 @@ document.addEventListener('DOMContentLoaded', () => {
             image_url: document.getElementById('image_url').value.trim() || null
         };
 
-        // Валидация
+     
         if (!formData.title || !formData.description || !formData.ingredients || !formData.instructions) {
             showMessage('Пожалуйста, заполните все обязательные поля!', 'error');
             return;
         }
 
-        // Показываем загрузку
+      
         const submitBtn = form.querySelector('button[type="submit"]');
         const originalText = submitBtn.textContent;
         submitBtn.textContent = '⏳ Отправка...';
@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
             showMessage(`✅ Рецепт "${recipe.title}" успешно создан!`, 'success');
             form.reset();
             
-            // Через 2 секунды переходим на страницу рецептов
+           
             setTimeout(() => {
                 window.location.href = '/recipes.html';
             }, 2000);
@@ -68,7 +68,7 @@ document.addEventListener('DOMContentLoaded', () => {
         messageDiv.className = `message ${type}`;
         messageDiv.style.display = 'block';
         
-        // Автоматически скрываем через 5 секунд
+       
         clearTimeout(window.messageTimeout);
         window.messageTimeout = setTimeout(() => {
             messageDiv.style.display = 'none';

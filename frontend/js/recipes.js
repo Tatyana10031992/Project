@@ -1,14 +1,14 @@
 const API_URL = 'http://localhost:8000/api';
 
-// Фото для разных рецептов (по ID)
+
 const RECIPE_IMAGES = {
     1: '/assets/images/333.jpg',
     2: '/assets/images/222.jpg',
     3: '/assets/images/111.jpg',
-    // Добавьте другие ID и пути к фото
+   
 };
 
-// Загрузка рецептов
+
 async function loadRecipes() {
     try {
         const response = await fetch(`${API_URL}/recipes`);
@@ -21,7 +21,7 @@ async function loadRecipes() {
     }
 }
 
-// Отображение рецептов
+
 function displayRecipes(recipes) {
     const container = document.getElementById('recipes-container');
     
@@ -38,18 +38,18 @@ function displayRecipes(recipes) {
     }
     
     container.innerHTML = recipes.map(recipe => {
-        // ============ ВЫБИРАЕМ ФОТО ДЛЯ РЕЦЕПТА ============
+        
         let imageStyle;
         
-        // Если у рецепта есть своё фото в БД - используем его
+        
         if (recipe.image_url) {
             imageStyle = `background-image: url('${recipe.image_url}');`;
         }
-        // Иначе используем фото по ID из словаря
+        
         else if (RECIPE_IMAGES[recipe.id]) {
             imageStyle = `background-image: url('${RECIPE_IMAGES[recipe.id]}');`;
         }
-        // Иначе используем стандартное фото
+     
         else {
             imageStyle = `background-image: url('/assets/images/default.jpg'); background-color: #f5d6b3;`;
         }
@@ -81,7 +81,7 @@ function getDifficultyText(difficulty) {
     return map[difficulty] || difficulty;
 }
 
-// Демо-рецепты для показа, если API не отвечает
+
 function displayDemoRecipes() {
     const container = document.getElementById('recipes-container');
     

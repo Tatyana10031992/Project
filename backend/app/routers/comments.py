@@ -15,7 +15,6 @@ def get_db():
 
 @router.get("/recipe/{recipe_id}", response_model=List[schemas.Comment])
 def get_comments_for_recipe(recipe_id: int, db: Session = Depends(get_db)):
-    # Проверяем, существует ли рецепт
     recipe = crud.get_recipe(db, recipe_id)
     if not recipe:
         raise HTTPException(status_code=404, detail="Recipe not found")
@@ -25,7 +24,6 @@ def get_comments_for_recipe(recipe_id: int, db: Session = Depends(get_db)):
 
 @router.post("/", response_model=schemas.Comment)
 def create_comment(comment: schemas.CommentCreate, db: Session = Depends(get_db)):
-    # Проверяем, существует ли рецепт
     recipe = crud.get_recipe(db, comment.recipe_id)
     if not recipe:
         raise HTTPException(status_code=404, detail="Recipe not found")

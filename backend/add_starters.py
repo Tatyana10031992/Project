@@ -32,7 +32,6 @@ def add_starters_to_db():
     ]
     
     for data in starters_data:
-        # Проверяем, есть ли уже такая закваска
         existing = db.query(models.Starter).filter(models.Starter.name == data["name"]).first()
         if not existing:
             starter = schemas.StarterCreate(**data)

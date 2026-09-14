@@ -1,6 +1,6 @@
 const API_URL = 'http://localhost:8000/api';
 
-// Получаем ID рецепта из URL
+
 const urlParams = new URLSearchParams(window.location.search);
 const recipeId = urlParams.get('id');
 
@@ -37,11 +37,11 @@ function displayRecipe(recipe) {
     document.getElementById('recipeDescription').textContent = recipe.description;
     document.getElementById('recipeTime').textContent = recipe.prep_time + recipe.cook_time;
     
-    // Дата
+   
     const date = new Date(recipe.created_at);
     document.getElementById('recipeDate').textContent = date.toLocaleDateString('ru-RU');
     
-    // Сложность
+  
     const difficultyMap = {
         'easy': '🍃 Легкий',
         'medium': '⚖️ Средний',
@@ -51,19 +51,19 @@ function displayRecipe(recipe) {
     difficultyEl.textContent = difficultyMap[recipe.difficulty] || recipe.difficulty;
     difficultyEl.className = `difficulty-badge ${recipe.difficulty}`;
     
-    // Ингредиенты
+
     const ingredients = recipe.ingredients.split('\n').filter(i => i.trim());
     const ingredientsHtml = ingredients.map(i => `<li>${i.trim()}</li>`).join('');
     document.getElementById('recipeIngredients').innerHTML = ingredientsHtml;
     
-    // Инструкция
+    
     const instructions = recipe.instructions.split('\n').filter(i => i.trim());
     const instructionsHtml = instructions.map((i, index) => 
         `<p><strong>Шаг ${index + 1}:</strong> ${i.trim()}</p>`
     ).join('');
     document.getElementById('recipeInstructions').innerHTML = instructionsHtml;
     
-    // Изображение
+    
     if (recipe.image_url) {
         document.getElementById('recipeImage').innerHTML = 
             `<img src="${recipe.image_url}" alt="${recipe.title}" style="max-width: 100%; max-height: 300px; border-radius: 10px;">`;
@@ -148,12 +148,12 @@ function setupCommentForm(recipeId) {
             
             if (!response.ok) throw new Error('Ошибка при отправке комментария');
             
-            // Очищаем форму
+            
             form.reset();
             document.getElementById('commentRating').value = '0';
             document.querySelectorAll('.rating-stars span').forEach(el => el.classList.remove('active'));
             
-            // Перезагружаем комментарии
+            
             loadComments(recipeId);
             
             alert('✅ Комментарий успешно добавлен!');

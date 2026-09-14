@@ -4,11 +4,11 @@ from app import models
 def update_recipe_photos():
     db = SessionLocal()
     
-    # Список рецептов и их фото
+    
     recipes_photos = [
-        {"id": 1, "image_url": "/assets/images/111.jpg"},      # для рецепта с ID 1
-        {"id": 2, "image_url": "/assets/images/222.jpg"},   # для рецепта с ID 2
-        {"id": 3, "image_url": "/assets/images/333.jpg"},   # для рецепта с ID 3
+        {"id": 1, "image_url": "/assets/images/111.jpg"},      
+        {"id": 2, "image_url": "/assets/images/222.jpg"},   
+        {"id": 3, "image_url": "/assets/images/333.jpg"},  
     ]
     
     try:

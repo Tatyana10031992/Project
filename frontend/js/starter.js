@@ -1,6 +1,6 @@
 const API_URL = 'http://localhost:8000/api';
 
-// Все закваски с подробными данными
+
 const ALL_STARTERS = [
     {
         id: 1,
@@ -44,7 +44,7 @@ const ALL_STARTERS = [
     
 ];
 
-// Загрузка заквасок
+
 async function loadStarters() {
     try {
         const response = await fetch(`${API_URL}/starters`);
@@ -61,7 +61,7 @@ async function loadStarters() {
     }
 }
 
-// Отображение заквасок (БЕЗ ФИЛЬТРОВ)
+
 function displayStarters(starters) {
     const container = document.getElementById('starters-container');
     if (!container) return;
@@ -111,7 +111,7 @@ function displayStarters(starters) {
     `).join('');
 }
 
-// Функции для кнопок
+
 function showRecipeFor(name) {
     window.location.href = `/recipes.html?starter=${encodeURIComponent(name)}`;
 }
@@ -135,7 +135,7 @@ ${starter.properties.map(p => `• ${p}`).join('\n')}
     `);
 }
 
-// Анимация появления
+
 function animateOnScroll() {
     const elements = document.querySelectorAll('.guide-step, .tip-card, .starter-card');
     
@@ -160,7 +160,7 @@ function animateOnScroll() {
     });
 }
 
-// Калькулятор кормления
+
 function calculateFeeding() {
     const starterAmount = parseInt(document.getElementById('starterAmount')?.value) || 100;
     const hydration = parseInt(document.getElementById('hydration')?.value) || 100;
@@ -182,7 +182,7 @@ function calculateFeeding() {
     if (discardEl) discardEl.textContent = `${discardAmount} г`;
 }
 
-// Добавляем анимацию в CSS
+
 const styleSheet = document.createElement("style");
 styleSheet.textContent = `
     @keyframes fadeIn {
@@ -192,11 +192,11 @@ styleSheet.textContent = `
 `;
 document.head.appendChild(styleSheet);
 
-// Инициализация
+
 document.addEventListener('DOMContentLoaded', () => {
     loadStarters();
     animateOnScroll();
     
-    // Автоматический расчет калькулятора
+    
     setTimeout(calculateFeeding, 100);
 });
