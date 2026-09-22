@@ -572,3 +572,66 @@
         text-align: left;
     }
 }
+
+
+/* ============================================================
+   Калькулятор кормления — поля
+   ============================================================ */
+
+.calc-inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.calc-inputs .form-group {
+    margin-bottom: 0;
+}
+
+.calc-inputs label {
+    display: block;
+    font-weight: 600;
+    color: #2c1810;
+    margin-bottom: 0.4rem;
+}
+
+.calc-inputs input[type="number"],
+.calc-inputs select {
+    width: 100%;
+    max-width: 320px;
+    padding: 10px 14px;
+    border: 2px solid #e0d5cc;
+    border-radius: 10px;
+    background: #fff;
+    font-size: 1rem;
+    font-family: inherit;
+    color: #2c1810;
+    box-sizing: border-box;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.calc-inputs input:focus,
+.calc-inputs select:focus {
+    outline: none;
+    border-color: #e8a87c;
+    box-shadow: 0 0 0 3px rgba(232, 168, 124, 0.15);
+}
+
+.calc-inputs button {
+    padding: 12px 28px;
+    border-radius: 30px;
+    border: none;
+    background: #e8a87c;
+    color: #2c1810;
+    font-size: 1rem;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
+    align-self: flex-start;
+}
+
+.calc-inputs button:hover {
+    background: #f5d6b3;
+    transform: translateY(-1px);
+}

@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Вход - Хлеб на закваске</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/auth.css">
+    <link rel="stylesheet" href="css/style.css?v=5">
+    <link rel="stylesheet" href="css/auth.css?v=5">
 </head>
 <body>
     <nav class="navbar">
@@ -15,11 +15,8 @@
                 <li><a href="/">Главная</a></li>
                 <li><a href="/recipes.html">Рецепты</a></li>
                 <li><a href="/starter.html">Закваска</a></li>
-                <li><a href="/add-recipe.html">➕ Добавить рецепт</a></li>
-                <li class="auth-links">
-                    <a href="/login.html" id="loginLink">Вход</a>
-                    <a href="/register.html" id="registerLink">Регистрация</a>
-                </li>
+                <li class="requires-auth"><a href="/add-recipe.html">➕ Добавить рецепт</a></li>
+                <li class="auth-links"></li>
             </ul>
         </div>
     </nav>
@@ -31,23 +28,25 @@
                     <h1>🔐 Вход</h1>
                     <p>Войдите в свой аккаунт</p>
                 </div>
-                
+
                 <form id="loginForm" class="auth-form">
                     <div class="form-group">
                         <label for="username">👤 Имя пользователя</label>
-                        <input type="text" id="username" required placeholder="Введите имя пользователя">
+                        <input type="text" id="username" required
+                               placeholder="Введите имя пользователя">
                     </div>
-                    
+
                     <div class="form-group">
                         <label for="password">🔒 Пароль</label>
-                        <input type="password" id="password" required placeholder="Введите пароль">
+                        <input type="password" id="password" required
+                               placeholder="Введите пароль">
                     </div>
-                    
+
                     <div id="message" class="auth-message"></div>
-                    
+
                     <button type="submit" class="btn btn-primary btn-full">Войти</button>
                 </form>
-                
+
                 <div class="auth-footer">
                     <p>Нет аккаунта? <a href="/register.html">Зарегистрироваться</a></p>
                 </div>
@@ -61,6 +60,9 @@
         </div>
     </footer>
 
+    <script src="js/config.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/auth-check.js"></script>
     <script src="js/login.js"></script>
 </body>
 </html>

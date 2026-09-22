@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Рецепт - Хлеб на закваске</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/recipe-detail.css">
+   <link rel="stylesheet" href="css/style.css?v=6">
+   <link rel="stylesheet" href="css/recipe-detail.css?v=6">    
 </head>
 <body>
     <nav class="navbar">
@@ -15,11 +15,8 @@
                 <li><a href="/">Главная</a></li>
                 <li><a href="/recipes.html" class="active">Рецепты</a></li>
                 <li><a href="/starter.html">Закваска</a></li>
-                <li><a href="/add-recipe.html">➕ Добавить рецепт</a></li>
-                <li class="auth-links">
-                    <a href="/login.html" id="loginLink">Вход</a>
-                    <a href="/register.html" id="registerLink">Регистрация</a>
-                </li>
+                <li class="requires-auth"><a href="/add-recipe.html">➕ Добавить рецепт</a></li>
+                <li class="auth-links"></li>
             </ul>
         </div>
     </nav>
@@ -27,6 +24,7 @@
     <section class="recipe-detail" id="recipeDetail">
         <div class="container">
             <div id="loading" class="loading">⏳ Загрузка рецепта...</div>
+
             <div id="recipeContent" style="display: none;">
                 <div class="recipe-header">
                     <h1 id="recipeTitle"></h1>
@@ -36,41 +34,34 @@
                         <span>📅 <span id="recipeDate"></span></span>
                     </div>
                 </div>
-                
-               
-                    
+
+                <div class="recipe-body">
+                    <div class="recipe-image-main">
+                        <div id="recipeImage">🍞</div>
+                    </div>
+
                     <div class="recipe-description">
                         <h2>📖 Описание</h2>
                         <p id="recipeDescription"></p>
                     </div>
-                    
+
                     <div class="recipe-ingredients">
                         <h2>🛒 Ингредиенты</h2>
                         <ul id="recipeIngredients"></ul>
                     </div>
-                    
+
                     <div class="recipe-instructions">
                         <h2>👨‍🍳 Инструкция</h2>
                         <div id="recipeInstructions"></div>
                     </div>
-
-                    <div class="recipe-actions">
-                        <a href="/recipes.html" class="btn btn-secondary">← Назад к рецептам</a>
-                        
-                    </div>
                 </div>
-                
-                <!-- Комментарии -->
+
                 <div class="comments-section">
                     <h2>💬 Комментарии (<span id="commentCount">0</span>)</h2>
-                    
+
                     <div class="comment-form">
                         <h3>Оставить комментарий</h3>
                         <form id="commentForm">
-                            <div class="form-group">
-                                <label for="commentAuthor">Ваше имя *</label>
-                                <input type="text" id="commentAuthor" required placeholder="Введите ваше имя">
-                            </div>
                             <div class="form-group">
                                 <label for="commentRating">Оценка</label>
                                 <div class="rating-stars" id="ratingStars">
@@ -84,17 +75,16 @@
                             </div>
                             <div class="form-group">
                                 <label for="commentContent">Комментарий *</label>
-                                <textarea id="commentContent" required placeholder="Поделитесь своим опытом приготовления этого хлеба..."></textarea>
+                                <textarea id="commentContent" required
+                                          placeholder="Поделитесь своим опытом приготовления..."></textarea>
                             </div>
-                            <button type="submit" class="btn btn-primary">Отправить комментарий</button>
+                            <button type="submit" class="btn btn-primary">Отправить</button>
                         </form>
                     </div>
-                    
-                    <div id="commentsContainer" class="comments-list">
-                        <!-- Комментарии загружаются через JS -->
-                    </div>
+
+                    <div id="commentsContainer" class="comments-list"></div>
                 </div>
-                
+
                 <div class="recipe-actions">
                     <a href="/recipes.html" class="btn btn-secondary">← Назад к рецептам</a>
                 </div>
@@ -108,6 +98,9 @@
         </div>
     </footer>
 
+    <script src="js/config.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/auth-check.js"></script>
     <script src="js/recipe-detail.js"></script>
 </body>
 </html>

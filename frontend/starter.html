@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Всё о закваске - Хлеб на закваске</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/starter.css">
+    <link rel="stylesheet" href="css/style.css?v=6">
+    <link rel="stylesheet" href="css/starter.css?v=6">  
 </head>
 <body>
     <nav class="navbar">
@@ -15,11 +15,8 @@
                 <li><a href="/">Главная</a></li>
                 <li><a href="/recipes.html">Рецепты</a></li>
                 <li><a href="/starter.html" class="active">Закваска</a></li>
-                <li><a href="/add-recipe.html">➕ Добавить рецепт</a></li>
-                <li class="auth-links">
-                    <a href="/login.html" id="loginLink">Вход</a>
-                    <a href="/register.html" id="registerLink">Регистрация</a>
-                </li>
+                <li class="requires-auth"><a href="/add-recipe.html">➕ Добавить рецепт</a></li>
+                <li class="auth-links"></li>
             </ul>
         </div>
     </nav>
@@ -31,7 +28,6 @@
         </div>
     </section>
 
-  
     <section class="intro-section">
         <div class="container">
             <div class="intro-content">
@@ -52,7 +48,6 @@
         </div>
     </section>
 
-    
     <section class="guide-section">
         <div class="container">
             <h2 class="section-title">📋 Как создать закваску с нуля</h2>
@@ -61,8 +56,8 @@
                     <div class="step-number">1</div>
                     <div class="step-content">
                         <h3>День 1: Начало</h3>
-                        <p>Смешайте <strong>100 г</strong> ржаной муки и <strong>100 г</strong> воды (комнатной температуры).</p>
-                        <div class="step-tip">💡 <em>Используйте ржаную муку — она содержит больше питательных веществ для бактерий.</em></div>
+                        <p>Смешайте <strong>100 г</strong> ржаной муки и <strong>100 г</strong> воды комнатной температуры.</p>
+                        <div class="step-tip">💡 <em>Используйте ржаную муку — она содержит больше питательных веществ.</em></div>
                     </div>
                 </div>
                 <div class="guide-step">
@@ -98,7 +93,6 @@
         </div>
     </section>
 
-    
     <section class="calculator-section">
         <div class="container">
             <h2 class="section-title">🧮 Калькулятор кормления закваски</h2>
@@ -146,24 +140,16 @@
         </div>
     </section>
 
-  
     <section class="types-section">
         <div class="container">
             <h2 class="section-title">🌾 Виды заквасок</h2>
+            <p class="section-subtitle">Выберите свой тип закваски для идеального хлеба</p>
             <div id="starters-container" class="starters-grid">
-                <!-- Загружается из API -->
+                
             </div>
         </div>
     </section>
 
-
-
-           
-        </div>
-    </div>
-</section>
-
-    
     <section class="tips-section">
         <div class="container">
             <h2 class="section-title">💡 Советы по уходу за закваской</h2>
@@ -171,17 +157,17 @@
                 <div class="tip-card">
                     <div class="tip-icon">🌡️</div>
                     <h3>Температура</h3>
-                    <p>Идеальная температура для закваски — <strong>22-26°C</strong>. В холодильнике закваска замедляется, но не умирает.</p>
+                    <p>Идеальная температура — <strong>22-26°C</strong>. В холодильнике закваска замедляется, но не умирает.</p>
                 </div>
                 <div class="tip-card">
                     <div class="tip-icon">💧</div>
                     <h3>Вода</h3>
-                    <p>Используйте <strong>фильтрованную или бутилированную воду</strong> без хлора. Хлор убивает полезные бактерии.</p>
+                    <p>Используйте <strong>фильтрованную воду</strong> без хлора. Хлор убивает полезные бактерии.</p>
                 </div>
                 <div class="tip-card">
                     <div class="tip-icon">🌾</div>
                     <h3>Мука</h3>
-                    <p>Лучше всего подходит <strong>ржаная или цельнозерновая мука</strong>. Они содержат больше питательных веществ.</p>
+                    <p>Лучше всего подходит <strong>ржаная или цельнозерновая мука</strong>. Больше питательных веществ.</p>
                 </div>
                 <div class="tip-card">
                     <div class="tip-icon">🔄</div>
@@ -191,12 +177,12 @@
                 <div class="tip-card">
                     <div class="tip-icon">👃</div>
                     <h3>Запах</h3>
-                    <p>Здоровая закваска пахнет <strong>приятно кисловатым, фруктовым или ореховым</strong> ароматом.</p>
+                    <p>Здоровая закваска пахнет <strong>кисловатым, фруктовым или ореховым</strong> ароматом.</p>
                 </div>
                 <div class="tip-card">
                     <div class="tip-icon">⚖️</div>
                     <h3>Соотношение</h3>
-                    <p>Классическое соотношение для кормления: <strong>1:1:1</strong> (закваска:мука:вода).</p>
+                    <p>Классическое соотношение: <strong>1:1:1</strong> (закваска:мука:вода).</p>
                 </div>
             </div>
         </div>
@@ -208,6 +194,9 @@
         </div>
     </footer>
 
+    <script src="js/config.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/auth-check.js"></script>
     <script src="js/starter.js"></script>
 </body>
 </html>

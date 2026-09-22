@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Добавить рецепт</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/form.css">
+    <title>Добавить рецепт - Хлеб на закваске</title>
+    <link rel="stylesheet" href="css/style.css?v=5">
+    <link rel="stylesheet" href="css/form.css?v=5">
 </head>
 <body>
     <nav class="navbar">
@@ -15,7 +15,8 @@
                 <li><a href="/">Главная</a></li>
                 <li><a href="/recipes.html">Рецепты</a></li>
                 <li><a href="/starter.html">Закваска</a></li>
-                <li><a href="/add-recipe.html" class="active">+ Добавить</a></li>
+                <li class="requires-auth"><a href="/add-recipe.html" class="active">➕ Добавить рецепт</a></li>
+                <li class="auth-links"></li>
             </ul>
         </div>
     </nav>
@@ -32,13 +33,14 @@
             <form id="recipeForm" class="recipe-form">
                 <div class="form-group">
                     <label for="title">Название рецепта *</label>
-                    <input type="text" id="title" name="title" required placeholder="Например: Классический ржаной хлеб">
+                    <input type="text" id="title" name="title" required
+                           placeholder="Например: Классический ржаной хлеб">
                 </div>
-
 
                 <div class="form-group">
                     <label for="description">Описание *</label>
-                    <textarea id="description" name="description" required placeholder="Краткое описание рецепта..."></textarea>
+                    <textarea id="description" name="description" required
+                              placeholder="Краткое описание рецепта..."></textarea>
                 </div>
 
                 <div class="form-row">
@@ -63,18 +65,32 @@
 
                 <div class="form-group">
                     <label for="ingredients">Ингредиенты *</label>
-                    <textarea id="ingredients" name="ingredients" required placeholder="Список ингредиентов (каждый с новой строки)&#10;Например:&#10;500 г муки&#10;350 мл воды&#10;150 г закваски&#10;10 г соли"></textarea>
+                    <textarea id="ingredients" name="ingredients" required
+                              placeholder="Список ингредиентов (каждый с новой строки)&#10;Например:&#10;500 г муки&#10;350 мл воды&#10;150 г закваски&#10;10 г соли"></textarea>
                     <small>Каждый ингредиент с новой строки</small>
                 </div>
 
                 <div class="form-group">
                     <label for="instructions">Инструкция приготовления *</label>
-                    <textarea id="instructions" name="instructions" required placeholder="Пошаговая инструкция..."></textarea>
+                    <textarea id="instructions" name="instructions" required
+                              placeholder="Пошаговая инструкция..."></textarea>
                 </div>
 
                 <div class="form-group">
-                    <label for="image_url">Ссылка на фото (необязательно)</label>
-                    <input type="url" id="image_url" name="image_url" placeholder="https://example.com/photo.jpg">
+                    <label for="image_url">🔗 Ссылка на фото (необязательно)</label>
+                    <input type="url" id="image_url" name="image_url"
+                           placeholder="https://example.com/photo.jpg">
+                    <small>Вставьте прямую ссылку на фото</small>
+                </div>
+
+                <div class="form-group">
+                    <label>📤 Или загрузите фото с компьютера</label>
+                    <div class="file-upload">
+                        <input type="file" id="imageFile" accept="image/*" onchange="previewImage(event)">
+                        <label for="imageFile" class="file-upload-label">📸 Выберите фото</label>
+                        <div id="imagePreview" class="image-preview"></div>
+                    </div>
+                    <small>JPG, PNG, GIF, WebP. Максимум 5MB</small>
                 </div>
 
                 <div class="form-actions">
@@ -93,6 +109,9 @@
         </div>
     </footer>
 
+    <script src="js/config.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/auth-check.js"></script>
     <script src="js/add-recipe.js"></script>
 </body>
 </html>

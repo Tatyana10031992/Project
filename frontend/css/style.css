@@ -472,3 +472,184 @@ footer {
     background: #f8d7da; 
     color: #721c24; 
 }
+
+
+/* Общие стили для полей ввода */
+.form-group {
+    margin-bottom: 1.2rem;
+}
+
+.form-group label {
+    display: block;
+    font-weight: 600;
+    color: #2c1810;
+    margin-bottom: 0.4rem;
+    font-size: 0.95rem;
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="password"],
+.form-group input[type="number"],
+.form-group input[type="url"],
+.form-group input[type="search"],
+.form-group textarea,
+.form-group select {
+    width: 100%;
+    padding: 10px 14px;
+    border: 2px solid #e0d5cc;
+    border-radius: 10px;
+    background: #ffffff;
+    font-size: 1rem;
+    font-family: inherit;
+    color: #2c1810;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    box-sizing: border-box;
+}
+
+/* Фокус */
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: #e8a87c;
+    box-shadow: 0 0 0 3px rgba(232, 168, 124, 0.15);
+}
+
+/* Placeholder */
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+    color: #b5a89c;
+}
+
+/* Textarea */
+.form-group textarea {
+    min-height: 90px;
+    resize: vertical;
+    line-height: 1.5;
+}
+
+/* Select */
+.form-group select {
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'><path fill='%232c1810' d='M6 8L0 0h12z'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    padding-right: 36px;
+}
+
+/* Кнопки */
+.form-group + button,
+form button[type="submit"],
+button.btn-primary {
+    padding: 12px 28px;
+    border-radius: 30px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    transition: background 0.2s, transform 0.1s;
+}
+
+/* Рейтинг-звёзды */
+.rating-stars {
+    display: flex;
+    gap: 6px;
+    font-size: 2rem;
+    cursor: pointer;
+    user-select: none;
+    margin: 0.3rem 0 0.6rem;
+}
+
+.rating-stars span {
+    opacity: 0.35;
+    transition: opacity 0.15s, transform 0.15s;
+    line-height: 1;
+}
+
+.rating-stars span:hover {
+    transform: scale(1.15);
+}
+
+.rating-stars span.active,
+.rating-stars span.active ~ span {
+    opacity: 1;
+}
+
+/* Блок калькулятора кормления */
+.calc-inputs .form-group {
+    margin-bottom: 1rem;
+}
+
+.calc-inputs label {
+    display: block;
+    font-weight: 600;
+    color: #2c1810;
+    margin-bottom: 0.4rem;
+}
+
+.calc-inputs input,
+.calc-inputs select {
+    width: 100%;
+    max-width: 320px;
+    padding: 10px 14px;
+    border: 2px solid #e0d5cc;
+    border-radius: 10px;
+    background: #fff;
+    font-size: 1rem;
+    font-family: inherit;
+    box-sizing: border-box;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.calc-inputs input:focus,
+.calc-inputs select:focus {
+    outline: none;
+    border-color: #e8a87c;
+    box-shadow: 0 0 0 3px rgba(232, 168, 124, 0.15);
+}
+
+.calc-inputs button {
+    margin-top: 0.6rem;
+    padding: 12px 28px;
+    border-radius: 30px;
+    background: #e8a87c;
+    color: #2c1810;
+    border: none;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
+}
+
+.calc-inputs button:hover {
+    background: #f5d6b3;
+    transform: translateY(-1px);
+}
+
+/* Блок формы комментария */
+.comment-form {
+    background: #faf8f5;
+    padding: 1.5rem;
+    border-radius: 12px;
+    margin-bottom: 1.5rem;
+}
+
+.comment-form h3 {
+    color: #2c1810;
+    margin-bottom: 1rem;
+}
+
+.rating-stars span.active {
+    color: #f5a623;
+    text-shadow: 0 0 8px rgba(245, 166, 35, 0.4);
+}
+
+.rating-stars span:hover,
+.rating-stars span:hover ~ span {
+    color: #f5a623;
+    opacity: 0.8;
+}
+
+

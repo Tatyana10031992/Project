@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Рецепты хлеба на закваске</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style.css?v=5">
+    <link rel="stylesheet" href="css/starter.css?v=5">  
 </head>
 <body>
     <nav class="navbar">
@@ -14,11 +15,8 @@
                 <li><a href="/">Главная</a></li>
                 <li><a href="/recipes.html" class="active">Рецепты</a></li>
                 <li><a href="/starter.html">Закваска</a></li>
-                <li><a href="/add-recipe.html">➕ Добавить рецепт</a></li>
-                <li class="auth-links">
-                    <a href="/login.html" id="loginLink">Вход</a>
-                    <a href="/register.html" id="registerLink">Регистрация</a>
-                </li>
+                <li class="requires-auth"><a href="/add-recipe.html">➕ Добавить рецепт</a></li>
+                <li class="auth-links"></li>
             </ul>
         </div>
     </nav>
@@ -33,7 +31,7 @@
     <section class="recipes-section">
         <div class="container">
             <div id="recipes-container" class="recipes-grid">
-                <!-- Рецепты будут загружены через JavaScript -->
+              
             </div>
         </div>
     </section>
@@ -44,6 +42,9 @@
         </div>
     </footer>
 
+    <script src="js/config.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/auth-check.js"></script>
     <script src="js/recipes.js"></script>
 </body>
 </html>

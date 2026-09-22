@@ -1,144 +1,131 @@
-const API_URL = 'http://localhost:8000/api';
-
-
-const ALL_STARTERS = [
-    {
-        id: 1,
-        name: 'Классическая ржаная',
-        type: 'ржаная',
-        emoji: '🌾',
-        badge: 'badge-rye',
-        description: 'Классическая закваска на ржаной муке. Даёт хлебу приятную кислинку, тёмный цвет и плотный мякиш. Самая стабильная и прощает ошибки.',
-        properties: ['Кислый вкус', 'Тёмный цвет', 'Плотный мякиш', 'Долго хранится'],
-        temperature: '24-26°C',
-        feeding: 'Каждые 12 часов',
-        humidity: '70-75%',
-        best_for: 'Ржаной хлеб, Бородинский, Дарницкий'
-    },
-    
-    {
-        id: 3,
-        name: 'Итальянская пшеничная',
-        type: 'пшеничная',
-        emoji: '🇮🇹',
-        description: 'Нежная закваска для итальянского хлеба. Создаёт идеальную текстуру для пиццы и фокаччи.',
-        properties: ['Эластичное тесто', 'Хрустящая корочка', 'Нежный вкус', 'Ароматная'],
-        temperature: '22-24°C',
-        feeding: 'Каждые 8-10 часов',
-        humidity: '65-70%',
-        best_for: 'Пицца, Фокачча, Чиабатта, Гриссини'
-    },
-    {
-        id: 4,
-        name: 'Сельская цельнозерновая',
-        type: 'цельнозерновая',
-        emoji: '🏡',
-        description: 'Деревенская закваска из цельнозерновой муки. Даёт хлеб с плотным мякишем и насыщенным вкусом.',
-        properties: ['Насыщенный вкус', 'Плотный мякиш', 'Питательная', 'Долго хранится'],
-        temperature: '26-28°C',
-        feeding: 'Каждые 6-8 часов',
-        humidity: '75-80%',
-        best_for: 'Деревенский хлеб, Бородинский, Хлеб с отрубями'
-    },
-   
-    
-];
-
 
 async function loadStarters() {
+    const container = document.getElementById('starters-container');
+    if (!container) return;
+
+    container.innerHTML = '<div class="loading">⏳ Загрузка…</div>';
+
     try {
         const response = await fetch(`${API_URL}/starters`);
-        if (!response.ok) throw new Error('Ошибка загрузки заквасок');
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+
         const starters = await response.json();
-        if (starters.length > 0) {
-            displayStarters(starters);
-        } else {
-            displayStarters(ALL_STARTERS);
+
+        if (!starters || starters.length === 0) {
+            container.innerHTML = `
+                <div class="no-recipes">
+                    <p style="font-size: 3rem;">🌾</p>
+                    <p style="color: #666;">Закваски пока не добавлены</p>
+                </div>`;
+            return;
         }
-    } catch (error) {
-        console.error('Ошибка:', error);
-        displayStarters(ALL_STARTERS);
+
+        renderStarters(starters);
+    } catch (err) {
+        console.error('Ошибка загрузки заквасок:', err);
+        container.innerHTML = `
+            <div class="no-recipes">
+                <p style="font-size: 3rem;">⚠️</p>
+                <p style="color: #666;">Не удалось загрузить закваски</p>
+                <p style="color: #999; font-size: 0.9rem;">${escapeHtml(err.message)}</p>
+                <button class="btn btn-primary" style="margin-top: 1rem;" onclick="loadStarters()">🔄 Повторить</button>
+            </div>`;
     }
 }
 
 
-function displayStarters(starters) {
+function renderStarters(starters) {
     const container = document.getElementById('starters-container');
     if (!container) return;
-    
-    container.innerHTML = starters.map(starter => `
-        <div class="starter-card">
-            <div class="starter-card-header">
-                <div class="starter-emoji">${starter.emoji || '🌾'}</div>
-                <div class="starter-title-group">
-                    <h3>${starter.name}</h3>
-                    <span class="starter-badge ${starter.badge || 'badge-rye'}">${starter.type || 'Закваска'}</span>
-                </div>
-            </div>
-            <div class="starter-card-body">
-                <p>${starter.description}</p>
-                
-                <div class="starter-properties">
-                    ${starter.properties ? starter.properties.map(prop => 
-                        `<span class="property-tag">${prop}</span>`
-                    ).join('') : ''}
-                </div>
-                
-                <div class="starter-details-grid">
-                    <div class="detail-item">
-                        <span class="detail-label">🌡️ Температура</span>
-                        <span class="detail-value">${starter.temperature || '22-26°C'}</span>
-                    </div>
-                    <div class="detail-item">
-                        <span class="detail-label">💧 Влажность</span>
-                        <span class="detail-value">${starter.humidity || '65-75%'}</span>
-                    </div>
-                    <div class="detail-item">
-                        <span class="detail-label">🔄 Кормление</span>
-                        <span class="detail-value">${starter.feeding || 'Каждые 12 часов'}</span>
-                    </div>
-                    <div class="detail-item">
-                        <span class="detail-label">✨ Идеально для</span>
-                        <span class="detail-value">${starter.best_for || 'Разных видов хлеба'}</span>
+
+    container.innerHTML = starters.map(starter => {
+        // properties хранится как JSON-строка в БД
+        let props = [];
+        try {
+            props = JSON.parse(starter.properties || '[]');
+            if (!Array.isArray(props)) props = [];
+        } catch {
+            props = [];
+        }
+
+        const badgeClass = getBadgeClass(starter.type);
+
+        return `
+            <div class="starter-card">
+                <div class="starter-card-header">
+                    <div class="starter-emoji">${escapeHtml(starter.emoji || '🌾')}</div>
+                    <div class="starter-title-group">
+                        <h3>${escapeHtml(starter.name)}</h3>
+                        <span class="starter-badge ${badgeClass}">${escapeHtml(starter.type)}</span>
                     </div>
                 </div>
-            </div>
-            <div class="starter-card-footer">
-              
-                <button class="btn-small" onclick="showDetails('${starter.name}')">📖 Подробнее</button>
-            </div>
-        </div>
-    `).join('');
+                <div class="starter-card-body">
+                    <p>${escapeHtml(starter.description)}</p>
+
+                    <div class="starter-properties">
+                        ${props.map(p => `<span class="property-tag">${escapeHtml(p)}</span>`).join('')}
+                    </div>
+
+                    <div class="starter-details-grid">
+                        <div class="detail-item">
+                            <span class="detail-label">🌡️ Температура</span>
+                            <span class="detail-value">${starter.temperature ?? '—'}°C</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">💧 Влажность</span>
+                            <span class="detail-value">${starter.humidity ?? '—'}%</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">🔄 Кормление</span>
+                            <span class="detail-value">${escapeHtml(starter.feeding_schedule)}</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">✨ Идеально для</span>
+                            <span class="detail-value">${escapeHtml(starter.best_for || '—')}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>`;
+    }).join('');
 }
 
 
-function showRecipeFor(name) {
-    window.location.href = `/recipes.html?starter=${encodeURIComponent(name)}`;
+function getBadgeClass(type) {
+    const map = {
+        'ржаная': 'badge-rye',
+        'пшеничная': 'badge-wheat',
+        'цельнозерновая': 'badge-whole',
+        'фруктовая': 'badge-fruit',
+    };
+    return map[type] || 'badge-rye';
 }
 
-function showDetails(name) {
-    const starter = ALL_STARTERS.find(s => s.name === name);
-    if (!starter) return;
-    
-    alert(`
-📖 ${starter.name}
 
-${starter.description}
+function calculateFeeding() {
+    const starterAmount = parseInt(document.getElementById('starterAmount')?.value) || 100;
+    const hydration = parseInt(document.getElementById('hydration')?.value) || 100;
 
-🌡️ Температура: ${starter.temperature}
-💧 Влажность: ${starter.humidity}
-🔄 Кормление: ${starter.feeding}
-✨ Идеально для: ${starter.best_for}
+    const keepAmount = Math.round(starterAmount * 0.5);
+    const discardAmount = starterAmount - keepAmount;
+    const flourAmount = Math.round(keepAmount);
+    const waterAmount = Math.round(keepAmount * (hydration / 100));
 
-Свойства:
-${starter.properties.map(p => `• ${p}`).join('\n')}
-    `);
+    const set = (id, val) => {
+        const el = document.getElementById(id);
+        if (el) el.textContent = `${val} г`;
+    };
+
+    set('waterAmount', waterAmount);
+    set('flourAmount', flourAmount);
+    set('keepAmount', keepAmount);
+    set('discardAmount', discardAmount);
 }
 
 
 function animateOnScroll() {
     const elements = document.querySelectorAll('.guide-step, .tip-card, .starter-card');
-    
+    if (!elements.length) return;
+
     const observer = new IntersectionObserver((entries) => {
         entries.forEach((entry, index) => {
             if (entry.isIntersecting) {
@@ -148,10 +135,8 @@ function animateOnScroll() {
                 }, index * 100);
             }
         });
-    }, {
-        threshold: 0.1
-    });
-    
+    }, { threshold: 0.1 });
+
     elements.forEach(el => {
         el.style.opacity = '0';
         el.style.transform = 'translateY(30px)';
@@ -161,42 +146,8 @@ function animateOnScroll() {
 }
 
 
-function calculateFeeding() {
-    const starterAmount = parseInt(document.getElementById('starterAmount')?.value) || 100;
-    const hydration = parseInt(document.getElementById('hydration')?.value) || 100;
-    
-    const keepPercent = 0.5;
-    const keepAmount = Math.round(starterAmount * keepPercent);
-    const discardAmount = starterAmount - keepAmount;
-    const flourAmount = Math.round(keepAmount);
-    const waterAmount = Math.round(keepAmount * (hydration / 100));
-    
-    const waterEl = document.getElementById('waterAmount');
-    const flourEl = document.getElementById('flourAmount');
-    const keepEl = document.getElementById('keepAmount');
-    const discardEl = document.getElementById('discardAmount');
-    
-    if (waterEl) waterEl.textContent = `${waterAmount} г`;
-    if (flourEl) flourEl.textContent = `${flourAmount} г`;
-    if (keepEl) keepEl.textContent = `${keepAmount} г`;
-    if (discardEl) discardEl.textContent = `${discardAmount} г`;
-}
-
-
-const styleSheet = document.createElement("style");
-styleSheet.textContent = `
-    @keyframes fadeIn {
-        from { opacity: 0; transform: translateY(20px); }
-        to { opacity: 1; transform: translateY(0); }
-    }
-`;
-document.head.appendChild(styleSheet);
-
-
 document.addEventListener('DOMContentLoaded', () => {
     loadStarters();
     animateOnScroll();
-    
-    
     setTimeout(calculateFeeding, 100);
 });

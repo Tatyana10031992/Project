@@ -202,3 +202,69 @@
         font-size: 1.5rem;
     }
 }
+
+
+
+.comment-form .form-group {
+    margin-bottom: 1.2rem;
+}
+
+.comment-form .form-group label {
+    display: block;
+    font-weight: 600;
+    color: #2c1810;
+    margin-bottom: 0.4rem;
+    font-size: 0.95rem;
+}
+
+.comment-form .form-group input[type="text"],
+.comment-form .form-group input[type="email"],
+.comment-form .form-group textarea {
+    width: 100%;
+    padding: 10px 14px;
+    border: 2px solid #e0d5cc;
+    border-radius: 10px;
+    background: #ffffff;
+    font-size: 1rem;
+    font-family: inherit;
+    color: #2c1810;
+    box-sizing: border-box;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.comment-form .form-group input:focus,
+.comment-form .form-group textarea:focus {
+    outline: none;
+    border-color: #e8a87c;
+    box-shadow: 0 0 0 3px rgba(232, 168, 124, 0.15);
+}
+
+.comment-form .form-group input::placeholder,
+.comment-form .form-group textarea::placeholder {
+    color: #b5a89c;
+}
+
+.comment-form .form-group textarea {
+    min-height: 100px;
+    resize: vertical;
+    line-height: 1.5;
+}
+
+/* Кнопка отправки */
+.comment-form button[type="submit"] {
+    padding: 12px 28px;
+    border-radius: 30px;
+    border: none;
+    background: #e8a87c;
+    color: #2c1810;
+    font-size: 1rem;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
+}
+
+.comment-form button[type="submit"]:hover {
+    background: #f5d6b3;
+    transform: translateY(-1px);
+}

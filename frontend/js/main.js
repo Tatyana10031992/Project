@@ -1,6 +1,3 @@
-const API_URL = 'http://localhost:8000/api';
-
-
 async function loadStats() {
     try {
         const [recipesRes, startersRes] = await Promise.all([
@@ -61,39 +58,4 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-
-function updateAuthUI() {
-    const username = localStorage.getItem('username');
-    const token = localStorage.getItem('access_token');
-    const loginLink = document.getElementById('loginLink');
-    const registerLink = document.getElementById('registerLink');
-    
-    if (token && username) {
-       
-        loginLink.textContent = `👤 ${username}`;
-        loginLink.href = '#';
-        loginLink.onclick = (e) => {
-            e.preventDefault();
-            if (confirm('Выйти из аккаунта?')) {
-                localStorage.removeItem('access_token');
-                localStorage.removeItem('username');
-                localStorage.removeItem('user_id');
-                window.location.reload();
-            }
-        };
-        registerLink.textContent = 'Выйти';
-        registerLink.href = '#';
-        registerLink.onclick = (e) => {
-            e.preventDefault();
-            if (confirm('Выйти из аккаунта?')) {
-                localStorage.removeItem('access_token');
-                localStorage.removeItem('username');
-                localStorage.removeItem('user_id');
-                window.location.reload();
-            }
-        };
-    }
-}
-
-
-document.addEventListener('DOMContentLoaded', updateAuthUI);
+document.addEventListener('DOMContentLoaded');
